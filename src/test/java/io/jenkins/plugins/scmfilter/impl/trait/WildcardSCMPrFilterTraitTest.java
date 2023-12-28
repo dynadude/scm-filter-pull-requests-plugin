@@ -10,6 +10,7 @@ import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.SCMHeadObserver;
 import jenkins.scm.api.SCMSourceCriteria;
 import jenkins.scm.api.mixin.ChangeRequestSCMHead;
+import jenkins.scm.api.mixin.TagSCMHead;
 import jenkins.scm.api.trait.SCMHeadPrefilter;
 import jenkins.scm.api.trait.SCMSourceContext;
 import jenkins.scm.impl.mock.MockSCMController;
@@ -97,5 +98,15 @@ class MockChangeRequestSCMHead extends SCMHead implements ChangeRequestSCMHead {
 
     public String getId() {
         return "mock";
+    }
+}
+
+class MockTagSCMHead extends SCMHead implements TagSCMHead {
+    public MockTagSCMHead(String name, String targetName) {
+        super(name);
+    }
+
+    public long getTimestamp() {
+        return 1L;
     }
 }
