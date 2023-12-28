@@ -48,7 +48,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  *
  * @since 0.1
  */
-public class AnySCMFilterTrait extends SCMSourceTrait {
+public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
 
     /**
      * The branch include rules.
@@ -83,7 +83,7 @@ public class AnySCMFilterTrait extends SCMSourceTrait {
      * @param tagExcludes the tag exclude rules.
      */
     @DataBoundConstructor
-    public AnySCMFilterTrait(@CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
+    public WildcardSCMPrFilterTrait(@CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
         this.includes = StringUtils.defaultIfBlank(includes, "*");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = StringUtils.defaultIfBlank(tagIncludes, "");
@@ -97,7 +97,7 @@ public class AnySCMFilterTrait extends SCMSourceTrait {
      * @param excludes the exclude rules.
      */
     @Deprecated
-    public AnySCMFilterTrait(@CheckForNull String includes, String excludes) {
+    public WildcardSCMPrFilterTrait(@CheckForNull String includes, String excludes) {
         this.includes = StringUtils.defaultIfBlank(includes, "*");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = "";
@@ -191,7 +191,7 @@ public class AnySCMFilterTrait extends SCMSourceTrait {
     /**
      * Our descriptor.
      */
-    @Symbol("headWildcardFilterWithPR")
+    @Symbol("wildcardSCMPrFilterTrait")
     @Extension
     @Selection
     public static class DescriptorImpl extends SCMSourceTraitDescriptor {
@@ -201,7 +201,7 @@ public class AnySCMFilterTrait extends SCMSourceTrait {
          */
         @Override
         public String getDisplayName() {
-            return Messages.WildcardSCMHeadFilterTrait_DisplayName();
+            return Messages.WildcardSCMPrFilterTrait_DisplayName();
         }
     }
 }
