@@ -1,5 +1,5 @@
 package io.jenkins.plugins.scmfilter;
 
 public interface Matcher {
-    boolean matches(String stringToMatch);
+    boolean matches(String pattern, String stringToMatch);
 }
