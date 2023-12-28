@@ -150,9 +150,11 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
         context.withPrefilter(new SCMHeadPrefilter() {
             @Override
             public boolean isExcluded(@NonNull SCMSource request, @NonNull SCMHead head) {
-                if (head instanceof ChangeRequestSCMHead) {
-                    head = ((ChangeRequestSCMHead) head).getTarget();
+                if (!(head instanceof ChangeRequestSCMHead)) {
+                    return false;
                 }
+
+                head = ((ChangeRequestSCMHead) head).getTarget();
 
                 if (head instanceof TagSCMHead) {
                     return !Pattern.matches(getPattern(getTagIncludes()), head.getName())
