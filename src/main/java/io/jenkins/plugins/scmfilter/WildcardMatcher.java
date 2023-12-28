@@ -13,7 +13,7 @@ public class WildcardMatcher implements Matcher {
         return Pattern.matches(regexString, testedString);
     }
 
-    public String toRegex(String wildcardString) {
+    private String toRegex(String wildcardString) {
         StringBuilder quotedBranches = new StringBuilder();
         for (String wildcard : wildcardString.split(" ")) {
             StringBuilder quotedBranch = new StringBuilder();
