@@ -43,7 +43,8 @@ import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
- * Decorates a {@link SCMSource} with a {@link SCMHeadPrefilter} that filters {@link SCMHead} instances based on
+ * Decorates a {@link SCMSource} with a {@link SCMHeadPrefilter} that filters
+ * {@link SCMHead} instances based on
  * matching wildcard include/exclude rules.
  *
  * @since 0.1
@@ -77,13 +78,14 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
     /**
      * Stapler constructor.
      *
-     * @param includes the branch include rules.
-     * @param excludes the branch exclude rules.
+     * @param includes    the branch include rules.
+     * @param excludes    the branch exclude rules.
      * @param tagIncludes the tag include rules.
      * @param tagExcludes the tag exclude rules.
      */
     @DataBoundConstructor
-    public WildcardSCMPrFilterTrait(@CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
+    public WildcardSCMPrFilterTrait(
+            @CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
         this.includes = StringUtils.defaultIfBlank(includes, "*");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = StringUtils.defaultIfBlank(tagIncludes, "");
@@ -149,15 +151,15 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
             @Override
             public boolean isExcluded(@NonNull SCMSource request, @NonNull SCMHead head) {
                 if (head instanceof ChangeRequestSCMHead) {
-                    head = ((ChangeRequestSCMHead)head).getTarget();
+                    head = ((ChangeRequestSCMHead) head).getTarget();
                 }
 
-                if(head instanceof TagSCMHead) {
+                if (head instanceof TagSCMHead) {
                     return !Pattern.matches(getPattern(getTagIncludes()), head.getName())
-                         || Pattern.matches(getPattern(getTagExcludes()), head.getName());
+                            || Pattern.matches(getPattern(getTagExcludes()), head.getName());
                 } else {
                     return !Pattern.matches(getPattern(getIncludes()), head.getName())
-                         || Pattern.matches(getPattern(getExcludes()), head.getName());
+                            || Pattern.matches(getPattern(getExcludes()), head.getName());
                 }
             }
         });
