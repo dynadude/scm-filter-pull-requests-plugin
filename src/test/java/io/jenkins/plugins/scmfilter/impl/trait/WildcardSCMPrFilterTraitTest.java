@@ -72,6 +72,10 @@ public class WildcardSCMPrFilterTraitTest {
             controller.createBranch(mockRepoName, branch);
         }
 
+        controller.createTag(mockRepoName, mockBranches[0], "name");
+
+        controller.createTag(mockRepoName, mockBranches[0], "police");
+
         controller.openChangeRequest(mockRepoName, mockBranches[0]);
         controller.openChangeRequest(mockRepoName, mockBranches[1]);
 
