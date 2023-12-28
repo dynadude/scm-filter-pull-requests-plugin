@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 public class WildcardMatcher implements Matcher {
     private String regexString;
 
-    public WildcardMatcher(String str) {
-        regexString = toRegex(str);
+    public WildcardMatcher(String pattern) {
+        regexString = toRegex(pattern);
     }
 
     public boolean matches(String testedString) {
