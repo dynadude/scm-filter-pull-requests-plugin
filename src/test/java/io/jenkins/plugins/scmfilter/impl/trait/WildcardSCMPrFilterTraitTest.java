@@ -88,8 +88,12 @@ class MockChangeRequestSCMHead extends SCMHead implements ChangeRequestSCMHead {
     private SCMHead target;
 
     public MockChangeRequestSCMHead(String name, String targetName) {
+        this(name, new SCMHead(targetName));
+    }
+
+    public MockChangeRequestSCMHead(String name, SCMHead target) {
         super(name);
-        this.target = new SCMHead(targetName);
+        this.target = target;
     }
 
     public SCMHead getTarget() {
