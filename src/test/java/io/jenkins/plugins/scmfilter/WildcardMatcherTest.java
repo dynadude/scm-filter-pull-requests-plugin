@@ -18,4 +18,32 @@ public class WildcardMatcherTest {
 
         assertFalse(matcher.matches("new-dev"));
     }
+
+    @Test
+    public void testWildcardAtTheMiddle() throws Exception {
+        WildcardMatcher matcher = new WildcardMatcher("ma*er");
+
+        assertTrue(matcher.matches("master"));
+
+        assertTrue(matcher.matches("maker"));
+
+        assertFalse(matcher.matches("mast"));
+
+        assertFalse(matcher.matches("error"));
+
+        assertFalse(matcher.matches("computer"));
+    }
+
+    @Test
+    public void testWildcardAtTheBeginning() throws Exception {
+        WildcardMatcher matcher = new WildcardMatcher("*ter");
+
+        assertTrue(matcher.matches("master"));
+
+        assertTrue(matcher.matches("toaster"));
+
+        assertFalse(matcher.matches("terminal"));
+
+        assertFalse(matcher.matches("develop"));
+    }
 }
