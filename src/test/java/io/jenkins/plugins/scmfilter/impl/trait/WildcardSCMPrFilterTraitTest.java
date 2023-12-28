@@ -21,11 +21,8 @@ import org.junit.Test;
 public class WildcardSCMPrFilterTraitTest {
     private String mockRepoName = "mock-repo";
     private String[] mockBranches = {"master", "develop", "staging"};
-    SCMHead mockPrToMasterHead = new SCMHead("test-pr") {
-        public SCMHead getTarget() {
-            return new SCMHead(mockBranches[0]);
-        }
-    };
+    SCMHead mockPrToMasterHead = new MockChangeRequestSCMHead("test-pr", "master");
+    SCMHead mockPrToDevelopHead = new MockChangeRequestSCMHead("test-pr-2", "develop");
     SCMHead mockMasterHead = new MockSCMHead("master");
 
     @Test
