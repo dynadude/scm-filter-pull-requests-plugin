@@ -49,4 +49,14 @@ public class WildcardMatcherTest {
 
         assertFalse(matcher.matches(pattern, "develop"));
     }
+
+    @Test
+    public void testEmptyPattern() throws Exception {
+        String pattern = "";
+        WildcardMatcher matcher = new WildcardMatcher();
+
+        assertFalse(matcher.matches(pattern, "master"));
+
+        assertFalse(matcher.matches(pattern, "develop"));
+    }
 }
