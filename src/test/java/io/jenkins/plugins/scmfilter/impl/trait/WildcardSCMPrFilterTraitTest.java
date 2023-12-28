@@ -35,9 +35,15 @@ public class WildcardSCMPrFilterTraitTest {
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
             assertTrue(
-                    "Is the PR let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockPrHead));
+                    "Is the PR to master let through?", !prefilter.isExcluded(initializeMockSCMSource(),
+                            mockPrHead));
+
             assertTrue(
                     "Is master let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockMasterHead));
+
+            assertTrue(
+                    "Is develop let through?",
+                    !prefilter.isExcluded(initializeMockSCMSource(), new MockSCMHead("develop")));
         }
     }
 
