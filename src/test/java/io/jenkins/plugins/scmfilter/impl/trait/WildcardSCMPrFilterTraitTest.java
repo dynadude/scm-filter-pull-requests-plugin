@@ -24,6 +24,8 @@ public class WildcardSCMPrFilterTraitTest {
     private String[] mockBranches = {"master", "develop", "staging"};
     SCMHead mockPrToMasterHead = new MockChangeRequestSCMHead("test-pr", "master");
     SCMHead mockPrToDevelopHead = new MockChangeRequestSCMHead("test-pr-2", "develop");
+    SCMHead mockPrToNameTagHead = new MockChangeRequestSCMHead("test-pr-2", new MockTagSCMHead("mock", "name"));
+    SCMHead mockPrToPoliceTagHead = new MockChangeRequestSCMHead("test-pr-2", new MockTagSCMHead("mock", "police"));
     SCMHead mockMasterHead = new MockSCMHead("master");
 
     @Test
