@@ -59,6 +59,36 @@ public class WildcardSCMPrFilterTraitTest {
         }
     }
 
+    public void testBranchExcludes() throws Exception {
+        SCMSourceContext context = initializeMockSCMSourceContext();
+        WildcardSCMPrFilterTrait prWildcardFilter = new WildcardSCMPrFilterTrait("*", "mas*", "", "*");
+        prWildcardFilter.decorateContext(context);
+        List<SCMHeadPrefilter> prefilters = context.prefilters();
+        for (SCMHeadPrefilter prefilter : prefilters) {
+            assertTrue(
+                    "Is the PR to master filtered out?",
+                    prefilter.isExcluded(initializeMockSCMSource(), mockPrToMasterHead));
+
+            assertTrue(
+                    "Is the PR to develop let through?",
+                    !prefilter.isExcluded(initializeMockSCMSource(), mockPrToDevelopHead));
+
+            assertTrue(
+                    "Is the PR to the name tag filtered out?",
+                    prefilter.isExcluded(initializeMockSCMSource(), mockPrToNameTagHead));
+
+            assertTrue(
+                    "Is the PR to the police tag filtered out?",
+                    prefilter.isExcluded(initializeMockSCMSource(), mockPrToPoliceTagHead));
+
+            assertTrue("Is master let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockMasterHead));
+
+            assertTrue(
+                    "Is develop let through?",
+                    !prefilter.isExcluded(initializeMockSCMSource(), new MockSCMHead("develop")));
+        }
+    }
+
     @Test
     public void testFilterToNameTag() throws Exception {
         SCMSourceContext context = initializeMockSCMSourceContext();
