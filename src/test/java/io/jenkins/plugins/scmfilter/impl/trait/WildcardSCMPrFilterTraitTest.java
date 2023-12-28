@@ -21,11 +21,11 @@ import org.junit.Test;
 
 public class WildcardSCMPrFilterTraitTest {
     private String mockRepoName = "mock-repo";
-    private String[] mockBranches = {"master", "develop", "staging"};
+    private String[] mockBranches = {"master", "develop", "staging "};
     SCMHead mockPrToMasterHead = new MockChangeRequestSCMHead("test-pr", "master");
     SCMHead mockPrToDevelopHead = new MockChangeRequestSCMHead("test-pr-2", "develop");
-    SCMHead mockPrToNameTagHead = new MockChangeRequestSCMHead("test-pr-2", new MockTagSCMHead("mock", "name"));
-    SCMHead mockPrToPoliceTagHead = new MockChangeRequestSCMHead("test-pr-2", new MockTagSCMHead("mock", "police"));
+    SCMHead mockPrToNameTagHead = new MockChangeRequestSCMHead("test-pr-3", new MockTagSCMHead("name"));
+    SCMHead mockPrToPoliceTagHead = new MockChangeRequestSCMHead("test-pr-4", new MockTagSCMHead("police"));
     SCMHead mockMasterHead = new MockSCMHead("master");
 
     @Test
@@ -177,7 +177,7 @@ class MockChangeRequestSCMHead extends SCMHead implements ChangeRequestSCMHead {
 }
 
 class MockTagSCMHead extends SCMHead implements TagSCMHead {
-    public MockTagSCMHead(String name, String targetName) {
+    public MockTagSCMHead(String name) {
         super(name);
     }
 
