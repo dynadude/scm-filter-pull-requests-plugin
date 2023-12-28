@@ -2,7 +2,7 @@ package io.jenkins.plugins.scmfilter;
 
 import java.util.regex.Pattern;
 
-public class WildcardMatcher {
+public class WildcardMatcher implements Matcher {
     private String regexString;
 
     public WildcardMatcher(String str) {
