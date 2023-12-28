@@ -173,7 +173,7 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
     }
 
     private boolean isTagExcludedWithIncludeAndExcludes(String name) {
-        return isExcluded(name, includes, excludes);
+        return isExcluded(name, tagIncludes, tagExcludes);
     }
 
     private boolean isExcluded(String name, String includes, String excludes) {
