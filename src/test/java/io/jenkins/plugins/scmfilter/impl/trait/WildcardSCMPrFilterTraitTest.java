@@ -12,27 +12,32 @@ import jenkins.scm.api.SCMSourceCriteria;
 import jenkins.scm.api.trait.SCMHeadPrefilter;
 import jenkins.scm.api.trait.SCMSourceContext;
 import jenkins.scm.impl.mock.MockSCMController;
+import jenkins.scm.impl.mock.MockSCMHead;
 import jenkins.scm.impl.mock.MockSCMSource;
 import jenkins.scm.impl.mock.MockSCMSourceContext;
 import org.junit.Test;
 
 public class WildcardSCMPrFilterTraitTest {
     private String mockRepoName = "mock-repo";
-    private String[] mockBranches = {"master", "develop", "staging"};
+    private String[] mockBranches = { "master", "develop", "staging" };
+    SCMHead mockPrHead = new SCMHead("test-pr") {
+        public SCMHead getTarget() {
+            return new SCMHead(mockBranches[0]);
+        }
+    };
+    SCMHead mockMasterHead = new MockSCMHead("master");
 
     @Test
-    public void testPrToMasterNotFiltered() throws Exception {
+    public void testPrToMasterMasterNotFiltered() throws Exception {
         SCMSourceContext context = initializeMockSCMSourceContext();
-        WildcardSCMPrFilterTrait prWildcardFilter = new WildcardSCMPrFilterTrait(mockBranches[0], "fgd", "", "*");
+        WildcardSCMPrFilterTrait prWildcardFilter = new WildcardSCMPrFilterTrait(mockBranches[0], "", "", "*");
         prWildcardFilter.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
             assertTrue(
-                    "Is the PR let through?", prefilter.isExcluded(initializeMockSCMSource(), new SCMHead("test-pr") {
-                        public SCMHead getTarget() {
-                            return new SCMHead(mockBranches[0]);
-                        }
-                    }));
+                    "Is the PR let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockPrHead));
+            assertTrue(
+                    "Is master let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockMasterHead));
         }
     }
 
