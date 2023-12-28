@@ -19,7 +19,7 @@ import org.junit.Test;
 
 public class WildcardSCMPrFilterTraitTest {
     private String mockRepoName = "mock-repo";
-    private String[] mockBranches = { "master", "develop", "staging" };
+    private String[] mockBranches = {"master", "develop", "staging"};
     SCMHead mockPrHead = new SCMHead("test-pr") {
         public SCMHead getTarget() {
             return new SCMHead(mockBranches[0]);
@@ -35,11 +35,9 @@ public class WildcardSCMPrFilterTraitTest {
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
             assertTrue(
-                    "Is the PR to master let through?", !prefilter.isExcluded(initializeMockSCMSource(),
-                            mockPrHead));
+                    "Is the PR to master let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockPrHead));
 
-            assertTrue(
-                    "Is master let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockMasterHead));
+            assertTrue("Is master let through?", !prefilter.isExcluded(initializeMockSCMSource(), mockMasterHead));
 
             assertTrue(
                     "Is develop let through?",
