@@ -28,6 +28,8 @@ package io.jenkins.plugins.scmfilter.impl.trait;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
+import io.jenkins.plugins.scmfilter.Matcher;
+import io.jenkins.plugins.scmfilter.WildcardMatcher;
 import java.util.regex.Pattern;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.SCMSource;
@@ -50,6 +52,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
  * @since 0.1
  */
 public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
+
+    private Matcher matcher = new WildcardMatcher();
 
     /**
      * The branch include rules.
@@ -157,14 +161,24 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
                 head = ((ChangeRequestSCMHead) head).getTarget();
 
                 if (head instanceof TagSCMHead) {
-                    return !Pattern.matches(getPattern(getTagIncludes()), head.getName())
-                            || Pattern.matches(getPattern(getTagExcludes()), head.getName());
+                    return isTagExcludedWithIncludeAndExcludes(head.getName());
                 } else {
-                    return !Pattern.matches(getPattern(getIncludes()), head.getName())
-                            || Pattern.matches(getPattern(getExcludes()), head.getName());
+                    return isBranchExcludedWithIncludeAndExcludes(head.getName());
                 }
             }
         });
+    }
+
+    private boolean isBranchExcludedWithIncludeAndExcludes(String name) {
+        return isExcluded(name, includes, excludes);
+    }
+
+    private boolean isTagExcludedWithIncludeAndExcludes(String name) {
+        return isExcluded(name, includes, excludes);
+    }
+
+    private boolean isExcluded(String name, String includes, String excludes) {
+        return !(matcher.matches(includes, name) && !matcher.matches(excludes, name));
     }
 
     /**
