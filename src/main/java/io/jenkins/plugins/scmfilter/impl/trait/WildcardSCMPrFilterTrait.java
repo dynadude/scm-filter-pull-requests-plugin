@@ -30,7 +30,6 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import io.jenkins.plugins.scmfilter.Matcher;
 import io.jenkins.plugins.scmfilter.WildcardMatcher;
-import java.util.regex.Pattern;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.SCMSource;
 import jenkins.scm.api.mixin.ChangeRequestSCMHead;
@@ -179,31 +178,6 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
 
     private boolean isExcluded(String name, String includes, String excludes) {
         return !(matcher.matches(includes, name) && !matcher.matches(excludes, name));
-    }
-
-    /**
-     * Returns the pattern corresponding to the branches containing wildcards.
-     *
-     * @param branches the names of branches to create a pattern for
-     * @return pattern corresponding to the branches containing wildcards
-     */
-    private String getPattern(String branches) {
-        StringBuilder quotedBranches = new StringBuilder();
-        for (String wildcard : branches.split(" ")) {
-            StringBuilder quotedBranch = new StringBuilder();
-            for (String branch : wildcard.split("(?=[*])|(?<=[*])")) {
-                if (branch.equals("*")) {
-                    quotedBranch.append(".*");
-                } else if (!branch.isEmpty()) {
-                    quotedBranch.append(Pattern.quote(branch));
-                }
-            }
-            if (quotedBranches.length() > 0) {
-                quotedBranches.append("|");
-            }
-            quotedBranches.append(quotedBranch);
-        }
-        return quotedBranches.toString();
     }
 
     /**
