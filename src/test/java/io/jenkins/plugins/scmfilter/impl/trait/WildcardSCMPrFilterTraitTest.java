@@ -9,6 +9,7 @@ import java.util.List;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.SCMHeadObserver;
 import jenkins.scm.api.SCMSourceCriteria;
+import jenkins.scm.api.mixin.ChangeRequestSCMHead;
 import jenkins.scm.api.trait.SCMHeadPrefilter;
 import jenkins.scm.api.trait.SCMSourceContext;
 import jenkins.scm.impl.mock.MockSCMController;
@@ -71,7 +72,25 @@ public class WildcardSCMPrFilterTraitTest {
         }
 
         controller.openChangeRequest(mockRepoName, mockBranches[0]);
+        controller.openChangeRequest(mockRepoName, mockBranches[1]);
 
         return controller;
+    }
+}
+
+class MockChangeRequestSCMHead extends SCMHead implements ChangeRequestSCMHead {
+    private SCMHead target;
+
+    public MockChangeRequestSCMHead(String name, String targetName) {
+        super(name);
+        this.target = new SCMHead(targetName);
+    }
+
+    public SCMHead getTarget() {
+        return target;
+    }
+
+    public String getId() {
+        return "mock";
     }
 }
