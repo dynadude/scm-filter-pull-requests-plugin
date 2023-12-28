@@ -201,7 +201,7 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
          */
         @Override
         public String getDisplayName() {
-            return Messages.WildcardSCMPrFilterTrait_DisplayName();
+            return Messages.WildcardSCMPrFilterTrait_DescriptorImpl_DisplayName();
         }
     }
 }
