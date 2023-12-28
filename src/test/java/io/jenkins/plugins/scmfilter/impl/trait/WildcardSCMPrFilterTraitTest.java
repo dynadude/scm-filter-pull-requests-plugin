@@ -22,11 +22,11 @@ import org.junit.Test;
 public class WildcardSCMPrFilterTraitTest {
     private String mockRepoName = "mock-repo";
     private String[] mockBranches = {"master", "develop", "staging "};
-    SCMHead mockPrToMasterHead = new MockChangeRequestSCMHead("test-pr", "master");
-    SCMHead mockPrToDevelopHead = new MockChangeRequestSCMHead("test-pr-2", "develop");
-    SCMHead mockPrToNameTagHead = new MockChangeRequestSCMHead("test-pr-3", new MockTagSCMHead("name"));
-    SCMHead mockPrToPoliceTagHead = new MockChangeRequestSCMHead("test-pr-4", new MockTagSCMHead("police"));
-    SCMHead mockMasterHead = new MockSCMHead("master");
+    private SCMHead mockPrToMasterHead = new MockChangeRequestSCMHead("test-pr", "master");
+    private SCMHead mockPrToDevelopHead = new MockChangeRequestSCMHead("test-pr-2", "develop");
+    private SCMHead mockPrToNameTagHead = new MockChangeRequestSCMHead("test-pr-3", new MockTagSCMHead("name"));
+    private SCMHead mockPrToPoliceTagHead = new MockChangeRequestSCMHead("test-pr-4", new MockTagSCMHead("police"));
+    private SCMHead mockMasterHead = new MockSCMHead("master");
 
     @Test
     public void testFilterToMaster() throws Exception {
