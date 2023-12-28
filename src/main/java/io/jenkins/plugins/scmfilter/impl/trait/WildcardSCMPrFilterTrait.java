@@ -89,7 +89,7 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
     @DataBoundConstructor
     public WildcardSCMPrFilterTrait(
             @CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
-        this.includes = StringUtils.defaultIfBlank(includes, "*");
+        this.includes = StringUtils.defaultIfBlank(includes, "");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = StringUtils.defaultIfBlank(tagIncludes, "");
         this.tagExcludes = StringUtils.defaultIfBlank(tagExcludes, "");
@@ -103,7 +103,7 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
      */
     @Deprecated
     public WildcardSCMPrFilterTrait(@CheckForNull String includes, String excludes) {
-        this.includes = StringUtils.defaultIfBlank(includes, "*");
+        this.includes = StringUtils.defaultIfBlank(includes, "");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = "";
         this.tagExcludes = "*";
