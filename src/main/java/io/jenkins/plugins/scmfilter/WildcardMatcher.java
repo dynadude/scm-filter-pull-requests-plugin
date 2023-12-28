@@ -3,14 +3,11 @@ package io.jenkins.plugins.scmfilter;
 import java.util.regex.Pattern;
 
 public class WildcardMatcher implements Matcher {
-    private String regexString;
 
-    public WildcardMatcher(String pattern) {
-        regexString = toRegex(pattern);
-    }
+    public WildcardMatcher() {}
 
-    public boolean matches(String testedString) {
-        return Pattern.matches(regexString, testedString);
+    public boolean matches(String pattern, String testedString) {
+        return Pattern.matches(toRegex(pattern), testedString);
     }
 
     private String toRegex(String wildcardString) {

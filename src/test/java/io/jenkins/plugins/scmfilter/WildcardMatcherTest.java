@@ -8,42 +8,45 @@ import org.junit.Test;
 public class WildcardMatcherTest {
     @Test
     public void testWildcardAtTheEnd() throws Exception {
-        WildcardMatcher matcher = new WildcardMatcher("dev*");
+        String pattern = "dev*";
+        WildcardMatcher matcher = new WildcardMatcher();
 
-        assertTrue(matcher.matches("dev"));
+        assertTrue(matcher.matches(pattern, "dev"));
 
-        assertTrue(matcher.matches("develop"));
+        assertTrue(matcher.matches(pattern, "develop"));
 
-        assertFalse(matcher.matches("master"));
+        assertFalse(matcher.matches(pattern, "master"));
 
-        assertFalse(matcher.matches("new-dev"));
+        assertFalse(matcher.matches(pattern, "new-dev"));
     }
 
     @Test
     public void testWildcardAtTheMiddle() throws Exception {
-        WildcardMatcher matcher = new WildcardMatcher("ma*er");
+        String pattern = "ma*er";
+        WildcardMatcher matcher = new WildcardMatcher();
 
-        assertTrue(matcher.matches("master"));
+        assertTrue(matcher.matches(pattern, "master"));
 
-        assertTrue(matcher.matches("maker"));
+        assertTrue(matcher.matches(pattern, "maker"));
 
-        assertFalse(matcher.matches("mast"));
+        assertFalse(matcher.matches(pattern, "mast"));
 
-        assertFalse(matcher.matches("error"));
+        assertFalse(matcher.matches(pattern, "error"));
 
-        assertFalse(matcher.matches("computer"));
+        assertFalse(matcher.matches(pattern, "computer"));
     }
 
     @Test
     public void testWildcardAtTheBeginning() throws Exception {
-        WildcardMatcher matcher = new WildcardMatcher("*ter");
+        String pattern = "*ter";
+        WildcardMatcher matcher = new WildcardMatcher();
 
-        assertTrue(matcher.matches("master"));
+        assertTrue(matcher.matches(pattern, "master"));
 
-        assertTrue(matcher.matches("toaster"));
+        assertTrue(matcher.matches(pattern, "toaster"));
 
-        assertFalse(matcher.matches("terminal"));
+        assertFalse(matcher.matches(pattern, "terminal"));
 
-        assertFalse(matcher.matches("develop"));
+        assertFalse(matcher.matches(pattern, "develop"));
     }
 }
