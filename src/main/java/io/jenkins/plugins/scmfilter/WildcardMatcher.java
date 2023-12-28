@@ -2,10 +2,10 @@ package io.jenkins.plugins.scmfilter;
 
 import java.util.regex.Pattern;
 
-public class WildcardString {
+public class WildcardMatcher {
     private String regexString;
 
-    public WildcardString(String str) {
+    public WildcardMatcher(String str) {
         regexString = toRegex(str);
     }
 
