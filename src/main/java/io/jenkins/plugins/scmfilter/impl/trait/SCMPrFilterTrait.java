@@ -50,7 +50,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  *
  * @since 0.1
  */
-public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
+public class SCMPrFilterTrait extends SCMSourceTrait {
 
     private Matcher matcher = new WildcardMatcher();
 
@@ -87,8 +87,7 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
      * @param tagExcludes the tag exclude rules.
      */
     @DataBoundConstructor
-    public WildcardSCMPrFilterTrait(
-            @CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
+    public SCMPrFilterTrait(@CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
         this.includes = StringUtils.defaultIfBlank(includes, "");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = StringUtils.defaultIfBlank(tagIncludes, "");
@@ -102,7 +101,7 @@ public class WildcardSCMPrFilterTrait extends SCMSourceTrait {
      * @param excludes the exclude rules.
      */
     @Deprecated
-    public WildcardSCMPrFilterTrait(@CheckForNull String includes, String excludes) {
+    public SCMPrFilterTrait(@CheckForNull String includes, String excludes) {
         this.includes = StringUtils.defaultIfBlank(includes, "");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = "";
