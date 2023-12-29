@@ -29,7 +29,6 @@ import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import io.jenkins.plugins.scmfilter.Matcher;
-import io.jenkins.plugins.scmfilter.WildcardMatcher;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.SCMSource;
 import jenkins.scm.api.mixin.ChangeRequestSCMHead;
@@ -52,7 +51,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  */
 public class SCMPrFilterTrait extends SCMSourceTrait {
 
-    private Matcher matcher = new WildcardMatcher();
+    private Matcher matcher;
 
     /**
      * The branch include rules.
@@ -85,13 +84,16 @@ public class SCMPrFilterTrait extends SCMSourceTrait {
      * @param excludes    the branch exclude rules.
      * @param tagIncludes the tag include rules.
      * @param tagExcludes the tag exclude rules.
+     * @param matcher     the matcher for the pull requests.
      */
     @DataBoundConstructor
-    public SCMPrFilterTrait(@CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
+    public SCMPrFilterTrait(
+            @CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes, Matcher matcher) {
         this.includes = StringUtils.defaultIfBlank(includes, "");
         this.excludes = StringUtils.defaultIfBlank(excludes, "");
         this.tagIncludes = StringUtils.defaultIfBlank(tagIncludes, "");
         this.tagExcludes = StringUtils.defaultIfBlank(tagExcludes, "");
+        this.matcher = matcher;
     }
 
     /**
