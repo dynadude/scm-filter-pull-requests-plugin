@@ -95,20 +95,6 @@ public class SCMPrFilterTrait extends SCMSourceTrait {
     }
 
     /**
-     * Deprecated constructor kept around for compatibility and migration.
-     *
-     * @param includes the include rules.
-     * @param excludes the exclude rules.
-     */
-    @Deprecated
-    public SCMPrFilterTrait(@CheckForNull String includes, String excludes) {
-        this.includes = StringUtils.defaultIfBlank(includes, "");
-        this.excludes = StringUtils.defaultIfBlank(excludes, "");
-        this.tagIncludes = "";
-        this.tagExcludes = "*";
-    }
-
-    /**
      * Returns the branch include rules.
      *
      * @return the branch include rules.
