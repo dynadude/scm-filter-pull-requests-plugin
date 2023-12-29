@@ -59,4 +59,20 @@ public class WildcardMatcherTest {
 
         assertFalse(matcher.matches(pattern, "develop"));
     }
+
+    @Test
+    public void testmultiplePatterns() throws Exception {
+        String pattern = "develop master";
+        WildcardMatcher matcher = new WildcardMatcher();
+
+        assertTrue(matcher.matches(pattern, "master"));
+
+        assertTrue(matcher.matches(pattern, "develop"));
+
+        assertFalse(matcher.matches(pattern, "toaster"));
+
+        assertFalse(matcher.matches(pattern, "terminal"));
+
+        assertFalse(matcher.matches(pattern, "dev master"));
+    }
 }
