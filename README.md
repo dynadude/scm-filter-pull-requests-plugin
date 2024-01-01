@@ -1,4 +1,4 @@
-# scm-branch-discovery-filter-grouping
+# scm-filter-pull-requests
 
 ## Introduction
 
