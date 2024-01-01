@@ -3,6 +3,7 @@ package io.jenkins.plugins.scmfilter;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import io.jenkins.plugins.scmfilter.impl.WildcardMatcher;
 import org.junit.Test;
 
 public class WildcardMatcherTest {
@@ -34,6 +35,8 @@ public class WildcardMatcherTest {
         assertFalse(matcher.matches(pattern, "error"));
 
         assertFalse(matcher.matches(pattern, "computer"));
+
+        assertFalse(matcher.matches(pattern, "develop"));
     }
 
     @Test
@@ -68,6 +71,22 @@ public class WildcardMatcherTest {
         assertTrue(matcher.matches(pattern, "master"));
 
         assertTrue(matcher.matches(pattern, "develop"));
+
+        assertFalse(matcher.matches(pattern, "toaster"));
+
+        assertFalse(matcher.matches(pattern, "terminal"));
+
+        assertFalse(matcher.matches(pattern, "dev master"));
+    }
+
+    @Test
+    public void testOnlyMaster() throws Exception {
+        String pattern = "master";
+        WildcardMatcher matcher = new WildcardMatcher();
+
+        assertTrue(matcher.matches(pattern, "master"));
+
+        assertFalse(matcher.matches(pattern, "develop"));
 
         assertFalse(matcher.matches(pattern, "toaster"));
 
