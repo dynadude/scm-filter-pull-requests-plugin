@@ -34,7 +34,7 @@ public class TargetWildcardSCMPrFilterTrait extends SCMPrFilterTrait {
     /**
      * Our descriptor.
      */
-    @Symbol("wildcardSCMPrFilterTrait")
+    @Symbol("targetWildcardSCMPrFilterTrait")
     @Extension
     @Selection
     public static class DescriptorImpl extends SCMSourceTraitDescriptor {
@@ -44,7 +44,7 @@ public class TargetWildcardSCMPrFilterTrait extends SCMPrFilterTrait {
          */
         @Override
         public String getDisplayName() {
-            return Messages.WildcardSCMPrFilterTrait_DisplayName();
+            return Messages.TargetWildcardSCMPrFilterTrait_DisplayName();
         }
     }
 }

@@ -27,7 +27,7 @@ public class TargetRegexSCMPrFilterTrait extends SCMPrFilterTrait {
                 StringUtils.defaultIfBlank(regex, ""), StringUtils.defaultIfBlank(tagRegex, ""))));
     }
 
-    @Symbol("regexSCMPrFilterTrait")
+    @Symbol("targetRegexSCMPrFilterTrait")
     @Extension
     @Selection
     public static class DescriptorImpl extends SCMSourceTraitDescriptor {
@@ -37,7 +37,7 @@ public class TargetRegexSCMPrFilterTrait extends SCMPrFilterTrait {
          */
         @Override
         public String getDisplayName() {
-            return Messages.RegexSCMPrFilterTrait_DisplayName();
+            return Messages.TargetRegexSCMPrFilterTrait_DisplayName();
         }
 
         /**
