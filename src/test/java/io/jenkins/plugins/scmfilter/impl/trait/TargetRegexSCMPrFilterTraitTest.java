@@ -10,11 +10,11 @@ import jenkins.scm.api.trait.SCMSourceContext;
 import jenkins.scm.impl.mock.MockSCMHead;
 import org.junit.Test;
 
-public class RegexSCMPrFilterTraitTest {
+public class TargetRegexSCMPrFilterTraitTest {
     @Test
     public void testFilterToMaster() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new RegexSCMPrFilterTrait(TestInitialization.mockBranches[0], "");
+        SCMPrFilterTrait filterTrait = new TargetRegexSCMPrFilterTrait(TestInitialization.mockBranches[0], "");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
@@ -51,7 +51,7 @@ public class RegexSCMPrFilterTraitTest {
 
     public void testBranchExcludes() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new RegexSCMPrFilterTrait("(:!mas).*", "");
+        SCMPrFilterTrait filterTrait = new TargetRegexSCMPrFilterTrait("(:!mas).*", "");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
@@ -89,7 +89,7 @@ public class RegexSCMPrFilterTraitTest {
     @Test
     public void testFilterToNameTag() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new RegexSCMPrFilterTrait("", "name");
+        SCMPrFilterTrait filterTrait = new TargetRegexSCMPrFilterTrait("", "name");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {

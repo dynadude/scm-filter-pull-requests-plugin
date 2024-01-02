@@ -11,11 +11,11 @@ import jenkins.scm.api.trait.SCMSourceContext;
 import jenkins.scm.impl.mock.MockSCMHead;
 import org.junit.Test;
 
-public class WildcardSCMPrFilterTraitTest {
+public class TargetWildcardSCMPrFilterTraitTest {
     @Test
     public void testFilterToMaster() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new WildcardSCMPrFilterTrait("master", "", "", "*");
+        SCMPrFilterTrait filterTrait = new TargetWildcardSCMPrFilterTrait("master", "", "", "*");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
@@ -52,7 +52,7 @@ public class WildcardSCMPrFilterTraitTest {
 
     public void testBranchExcludes() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new WildcardSCMPrFilterTrait("*", "mas*", "", "*");
+        SCMPrFilterTrait filterTrait = new TargetWildcardSCMPrFilterTrait("*", "mas*", "", "*");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
@@ -90,7 +90,7 @@ public class WildcardSCMPrFilterTraitTest {
     @Test
     public void testFilterToNameTag() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new WildcardSCMPrFilterTrait("", "", "name", "");
+        SCMPrFilterTrait filterTrait = new TargetWildcardSCMPrFilterTrait("", "", "name", "");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         assertTrue("prefilters only have one item", prefilters.size() == 1);

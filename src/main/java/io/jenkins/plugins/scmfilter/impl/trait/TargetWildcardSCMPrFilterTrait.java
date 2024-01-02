@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
-public class WildcardSCMPrFilterTrait extends SCMPrFilterTrait {
+public class TargetWildcardSCMPrFilterTrait extends SCMPrFilterTrait {
     /**
      * Stapler constructor.
      *
@@ -22,7 +22,7 @@ public class WildcardSCMPrFilterTrait extends SCMPrFilterTrait {
      * @param matcher     the matcher for the pull requests.
      */
     @DataBoundConstructor
-    public WildcardSCMPrFilterTrait(
+    public TargetWildcardSCMPrFilterTrait(
             @CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
         super(new TargetSCMPrFilter(new WildcardSCMHeadMatcher(
                 StringUtils.defaultIfBlank(includes, ""),

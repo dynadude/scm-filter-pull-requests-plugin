@@ -15,14 +15,14 @@ import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.stapler.QueryParameter;
 
-public class RegexSCMPrFilterTrait extends SCMPrFilterTrait {
+public class TargetRegexSCMPrFilterTrait extends SCMPrFilterTrait {
     /**
      * Stapler constructor.
      *
      * @param regex    the regex for filtering PRs to branches.
      * @param tagRegex the regex for filtering PRs to tags.
      */
-    public RegexSCMPrFilterTrait(String regex, String tagRegex) {
+    public TargetRegexSCMPrFilterTrait(String regex, String tagRegex) {
         super(new TargetSCMPrFilter(new RegexSCMHeadMatcher(
                 StringUtils.defaultIfBlank(regex, ""), StringUtils.defaultIfBlank(tagRegex, ""))));
     }
