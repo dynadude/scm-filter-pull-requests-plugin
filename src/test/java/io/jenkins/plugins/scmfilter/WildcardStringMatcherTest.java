@@ -3,14 +3,14 @@ package io.jenkins.plugins.scmfilter;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import io.jenkins.plugins.scmfilter.impl.WildcardMatcher;
+import io.jenkins.plugins.scmfilter.impl.WildcardStringMatcher;
 import org.junit.Test;
 
-public class WildcardMatcherTest {
+public class WildcardStringMatcherTest {
     @Test
     public void testWildcardAtTheEnd() throws Exception {
         String pattern = "dev*";
-        WildcardMatcher matcher = new WildcardMatcher();
+        WildcardStringMatcher matcher = new WildcardStringMatcher();
 
         assertTrue(matcher.matches(pattern, "dev"));
 
@@ -24,7 +24,7 @@ public class WildcardMatcherTest {
     @Test
     public void testWildcardAtTheMiddle() throws Exception {
         String pattern = "ma*er";
-        WildcardMatcher matcher = new WildcardMatcher();
+        WildcardStringMatcher matcher = new WildcardStringMatcher();
 
         assertTrue(matcher.matches(pattern, "master"));
 
@@ -42,7 +42,7 @@ public class WildcardMatcherTest {
     @Test
     public void testWildcardAtTheBeginning() throws Exception {
         String pattern = "*ter";
-        WildcardMatcher matcher = new WildcardMatcher();
+        WildcardStringMatcher matcher = new WildcardStringMatcher();
 
         assertTrue(matcher.matches(pattern, "master"));
 
@@ -56,7 +56,7 @@ public class WildcardMatcherTest {
     @Test
     public void testEmptyPattern() throws Exception {
         String pattern = "";
-        WildcardMatcher matcher = new WildcardMatcher();
+        WildcardStringMatcher matcher = new WildcardStringMatcher();
 
         assertFalse(matcher.matches(pattern, "master"));
 
@@ -66,7 +66,7 @@ public class WildcardMatcherTest {
     @Test
     public void testmultiplePatterns() throws Exception {
         String pattern = "develop master";
-        WildcardMatcher matcher = new WildcardMatcher();
+        WildcardStringMatcher matcher = new WildcardStringMatcher();
 
         assertTrue(matcher.matches(pattern, "master"));
 
@@ -82,7 +82,7 @@ public class WildcardMatcherTest {
     @Test
     public void testOnlyMaster() throws Exception {
         String pattern = "master";
-        WildcardMatcher matcher = new WildcardMatcher();
+        WildcardStringMatcher matcher = new WildcardStringMatcher();
 
         assertTrue(matcher.matches(pattern, "master"));
 

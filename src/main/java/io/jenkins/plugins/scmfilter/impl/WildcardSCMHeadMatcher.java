@@ -34,7 +34,7 @@ public class WildcardSCMHeadMatcher extends SCMHeadMatcher {
             @NonNull String excludes,
             @NonNull String tagIncludes,
             @NonNull String tagExcludes) {
-        super(new WildcardMatcher());
+        super(new WildcardStringMatcher());
         this.includes = includes;
         this.excludes = excludes;
         this.tagIncludes = tagIncludes;

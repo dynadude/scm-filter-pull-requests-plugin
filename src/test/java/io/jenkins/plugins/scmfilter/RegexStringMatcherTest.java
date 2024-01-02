@@ -4,15 +4,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
-import io.jenkins.plugins.scmfilter.impl.RegexMatcher;
+import io.jenkins.plugins.scmfilter.impl.RegexStringMatcher;
 import java.util.regex.PatternSyntaxException;
 import org.junit.Test;
 
-public class RegexMatcherTest {
+public class RegexStringMatcherTest {
     @Test
     public void testRegexAtTheEnd() throws Exception {
         String pattern = "dev.*";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertTrue(matcher.matches(pattern, "dev"));
 
@@ -26,7 +26,7 @@ public class RegexMatcherTest {
     @Test
     public void testRegexAtTheMiddle() throws Exception {
         String pattern = "ma.*er";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertTrue(matcher.matches(pattern, "master"));
 
@@ -42,7 +42,7 @@ public class RegexMatcherTest {
     @Test
     public void testRegexAtTheBeginning() throws Exception {
         String pattern = ".*ter";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertTrue(matcher.matches(pattern, "master"));
 
@@ -56,7 +56,7 @@ public class RegexMatcherTest {
     @Test
     public void testEmptyPattern() throws Exception {
         String pattern = "";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertFalse(matcher.matches(pattern, "master"));
 
@@ -66,7 +66,7 @@ public class RegexMatcherTest {
     @Test
     public void testmultiplePatterns() throws Exception {
         String pattern = "develop master";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertTrue(matcher.matches(pattern, "develop master"));
 
@@ -82,7 +82,7 @@ public class RegexMatcherTest {
     @Test
     public void testAccidentalWildcard() throws Exception {
         String pattern = "dev*";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertFalse(matcher.matches(pattern, "develop"));
 
@@ -96,7 +96,7 @@ public class RegexMatcherTest {
     @Test
     public void testContains() throws Exception {
         String pattern = "dev.*";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertTrue(matcher.matches(pattern, "develop"));
 
@@ -110,7 +110,7 @@ public class RegexMatcherTest {
     @Test
     public void testOnlyWildcard() throws Exception {
         String pattern = "*";
-        Matcher matcher = new RegexMatcher();
+        StringMatcher matcher = new RegexStringMatcher();
 
         assertThrows(PatternSyntaxException.class, () -> {
             matcher.matches(pattern, "develop");

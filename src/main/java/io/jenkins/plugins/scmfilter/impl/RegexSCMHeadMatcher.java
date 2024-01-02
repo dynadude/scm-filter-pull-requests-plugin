@@ -21,7 +21,7 @@ public class RegexSCMHeadMatcher extends SCMHeadMatcher {
      */
     @DataBoundConstructor
     public RegexSCMHeadMatcher(@NonNull String regex, @NonNull String tagRegex) {
-        super(new RegexMatcher());
+        super(new RegexStringMatcher());
         this.regex = regex;
         this.tagRegex = tagRegex;
     }

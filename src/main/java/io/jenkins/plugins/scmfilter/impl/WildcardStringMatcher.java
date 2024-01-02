@@ -1,11 +1,11 @@
 package io.jenkins.plugins.scmfilter.impl;
 
-import io.jenkins.plugins.scmfilter.Matcher;
+import io.jenkins.plugins.scmfilter.StringMatcher;
 import java.util.regex.Pattern;
 
-public class WildcardMatcher implements Matcher {
+public class WildcardStringMatcher implements StringMatcher {
 
-    public WildcardMatcher() {}
+    public WildcardStringMatcher() {}
 
     public boolean matches(String pattern, String testedString) {
         return Pattern.matches(toRegex(pattern), testedString);

@@ -3,9 +3,9 @@ package io.jenkins.plugins.scmfilter;
 import jenkins.scm.api.SCMHead;
 
 public abstract class SCMHeadMatcher {
-    protected Matcher matcher;
+    protected StringMatcher matcher;
 
-    public SCMHeadMatcher(Matcher matcher) {
+    public SCMHeadMatcher(StringMatcher matcher) {
         this.matcher = matcher;
     }
 
