@@ -3,6 +3,7 @@ package io.jenkins.plugins.scmfilter;
 import static org.mockito.Mockito.mock;
 
 import io.jenkins.plugins.scmfilter.mock.MockChangeRequestSCMHead;
+import io.jenkins.plugins.scmfilter.mock.MockChangeRequestSCMHead2;
 import io.jenkins.plugins.scmfilter.mock.MockTagSCMHead;
 import java.io.IOException;
 import jenkins.scm.api.SCMHead;
@@ -22,6 +23,8 @@ public class TestInitialization {
     public static SCMHead mockPrToNameTagHead = new MockChangeRequestSCMHead("test-pr-3", new MockTagSCMHead("name"));
     public static SCMHead mockPrToPoliceTagHead =
             new MockChangeRequestSCMHead("test-pr-4", new MockTagSCMHead("police"));
+    public static SCMHead mockPrFromMasterHead = new MockChangeRequestSCMHead2("test-pr", "main", "master");
+    public static SCMHead mockPrFromDevelopHead = new MockChangeRequestSCMHead2("test-pr-2", "master", "develop");
     public static SCMHead mockMasterHead = new MockSCMHead("master");
 
     public static MockSCMSourceContext initializeMockSCMSourceContext() throws IOException {
