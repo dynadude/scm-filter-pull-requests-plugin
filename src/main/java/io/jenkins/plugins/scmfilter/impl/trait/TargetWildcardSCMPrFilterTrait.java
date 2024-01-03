@@ -1,17 +1,29 @@
 package io.jenkins.plugins.scmfilter.impl.trait;
 
-import edu.umd.cs.findbugs.annotations.CheckForNull;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import io.jenkins.plugins.scmfilter.impl.TargetSCMPrFilter;
 import io.jenkins.plugins.scmfilter.impl.WildcardSCMHeadMatcher;
 import io.jenkins.plugins.scmfilter.trait.SCMPrFilterTrait;
 import jenkins.scm.api.trait.SCMSourceTraitDescriptor;
 import jenkins.scm.impl.trait.Selection;
-import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class TargetWildcardSCMPrFilterTrait extends SCMPrFilterTrait {
+
+    @NonNull
+    private final String includes;
+
+    @NonNull
+    private final String excludes;
+
+    @NonNull
+    private final String tagIncludes;
+
+    @NonNull
+    private final String tagExcludes;
+
     /**
      * Stapler constructor.
      *
@@ -23,12 +35,32 @@ public class TargetWildcardSCMPrFilterTrait extends SCMPrFilterTrait {
      */
     @DataBoundConstructor
     public TargetWildcardSCMPrFilterTrait(
-            @CheckForNull String includes, String excludes, String tagIncludes, String tagExcludes) {
-        super(new TargetSCMPrFilter(new WildcardSCMHeadMatcher(
-                StringUtils.defaultIfBlank(includes, ""),
-                StringUtils.defaultIfBlank(excludes, ""),
-                StringUtils.defaultIfBlank(tagIncludes, ""),
-                StringUtils.defaultIfBlank(tagExcludes, ""))));
+            @NonNull String includes,
+            @NonNull String excludes,
+            @NonNull String tagIncludes,
+            @NonNull String tagExcludes) {
+        super(new TargetSCMPrFilter(new WildcardSCMHeadMatcher(includes, excludes, tagIncludes, tagExcludes)));
+
+        this.includes = includes;
+        this.excludes = excludes;
+        this.tagIncludes = tagIncludes;
+        this.tagExcludes = tagExcludes;
+    }
+
+    public String getIncludes() {
+        return includes;
+    }
+
+    public String getExcludes() {
+        return excludes;
+    }
+
+    public String getTagIncludes() {
+        return tagIncludes;
+    }
+
+    public String getTagExcludes() {
+        return tagExcludes;
     }
 
     /**

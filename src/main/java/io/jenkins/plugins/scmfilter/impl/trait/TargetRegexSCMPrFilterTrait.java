@@ -1,5 +1,6 @@
 package io.jenkins.plugins.scmfilter.impl.trait;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.util.FormValidation;
 import io.jenkins.plugins.scmfilter.impl.RegexSCMHeadMatcher;
@@ -9,7 +10,6 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import jenkins.scm.api.trait.SCMSourceTraitDescriptor;
 import jenkins.scm.impl.trait.Selection;
-import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
@@ -17,6 +17,13 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
 public class TargetRegexSCMPrFilterTrait extends SCMPrFilterTrait {
+
+    @NonNull
+    private final String regex;
+
+    @NonNull
+    private final String tagRegex;
+
     /**
      * Stapler constructor.
      *
@@ -24,9 +31,19 @@ public class TargetRegexSCMPrFilterTrait extends SCMPrFilterTrait {
      * @param tagRegex the regex for filtering PRs to tags.
      */
     @DataBoundConstructor
-    public TargetRegexSCMPrFilterTrait(String regex, String tagRegex) {
-        super(new TargetSCMPrFilter(new RegexSCMHeadMatcher(
-                StringUtils.defaultIfBlank(regex, ""), StringUtils.defaultIfBlank(tagRegex, ""))));
+    public TargetRegexSCMPrFilterTrait(@NonNull String regex, @NonNull String tagRegex) {
+        super(new TargetSCMPrFilter(new RegexSCMHeadMatcher(regex, tagRegex)));
+
+        this.regex = regex;
+        this.tagRegex = tagRegex;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public String getTagRegex() {
+        return tagRegex;
     }
 
     @Symbol("targetRegexSCMPrFilterTrait")

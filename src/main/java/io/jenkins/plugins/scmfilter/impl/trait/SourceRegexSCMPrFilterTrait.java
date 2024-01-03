@@ -1,5 +1,6 @@
 package io.jenkins.plugins.scmfilter.impl.trait;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.util.FormValidation;
 import io.jenkins.plugins.scmfilter.impl.RegexSCMHeadMatcher;
@@ -9,7 +10,6 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import jenkins.scm.api.trait.SCMSourceTraitDescriptor;
 import jenkins.scm.impl.trait.Selection;
-import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
@@ -17,14 +17,24 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
 public class SourceRegexSCMPrFilterTrait extends SCMPrFilterTrait {
+
+    @NonNull
+    private final String regex;
+
     /**
      * Stapler constructor.
      *
      * @param regex the regex for filtering PRs to branches.
      */
     @DataBoundConstructor
-    public SourceRegexSCMPrFilterTrait(String regex) {
-        super(new SourceSCMPrFilter(new RegexSCMHeadMatcher(StringUtils.defaultIfBlank(regex, ""), "")));
+    public SourceRegexSCMPrFilterTrait(@NonNull String regex) {
+        super(new SourceSCMPrFilter(new RegexSCMHeadMatcher(regex, "")));
+
+        this.regex = regex;
+    }
+
+    public String getRegex() {
+        return regex;
     }
 
     @Symbol("sourceRegexSCMPrFilterTrait")
