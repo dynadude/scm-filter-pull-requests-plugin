@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
+import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
 public class SourceRegexSCMPrFilterTrait extends SCMPrFilterTrait {
@@ -21,6 +22,7 @@ public class SourceRegexSCMPrFilterTrait extends SCMPrFilterTrait {
      *
      * @param regex the regex for filtering PRs to branches.
      */
+    @DataBoundConstructor
     public SourceRegexSCMPrFilterTrait(String regex) {
         super(new SourceSCMPrFilter(new RegexSCMHeadMatcher(StringUtils.defaultIfBlank(regex, ""), "")));
     }
