@@ -27,7 +27,7 @@ public class SourceWildcardSCMPrFilterTrait extends SCMPrFilterTrait {
      */
     @DataBoundConstructor
     public SourceWildcardSCMPrFilterTrait(@NonNull String includes, @NonNull String excludes) {
-        super(new SourceSCMPrFilter(new WildcardSCMHeadMatcher(includes, excludes, "", "")));
+        super(new SourceSCMPrFilter(new WildcardSCMHeadMatcher(includes, excludes)));
 
         this.includes = includes;
         this.excludes = excludes;
