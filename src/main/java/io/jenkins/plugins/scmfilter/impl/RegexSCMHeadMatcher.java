@@ -10,8 +10,16 @@ public class RegexSCMHeadMatcher extends SCMHeadMatcher {
     @NonNull
     private final String regex;
 
-    @NonNull
     private final String tagRegex;
+
+    /**
+     * Stapler constructor.
+     *
+     * @param regex the regex for filtering PRs to branches.
+     */
+    public RegexSCMHeadMatcher(@NonNull String regex) {
+        this(regex, null);
+    }
 
     /**
      * Stapler constructor.
@@ -20,14 +28,14 @@ public class RegexSCMHeadMatcher extends SCMHeadMatcher {
      * @param tagRegex the regex for filtering PRs to tags.
      */
     @DataBoundConstructor
-    public RegexSCMHeadMatcher(@NonNull String regex, @NonNull String tagRegex) {
+    public RegexSCMHeadMatcher(@NonNull String regex, String tagRegex) {
         super(new RegexStringMatcher());
         this.regex = regex;
         this.tagRegex = tagRegex;
     }
 
     public boolean doesMatch(SCMHead head) {
-        if (head instanceof TagSCMHead) {
+        if (head instanceof TagSCMHead && tagRegex != null) {
             return matcher.matches(tagRegex, head.getName());
         } else {
             return matcher.matches(regex, head.getName());
