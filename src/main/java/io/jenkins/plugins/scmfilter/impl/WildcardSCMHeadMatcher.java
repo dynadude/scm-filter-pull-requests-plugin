@@ -45,7 +45,7 @@ public class WildcardSCMHeadMatcher extends SCMHeadMatcher {
         this.tagExcludes = tagExcludes;
     }
 
-    public boolean doesMatch(SCMHead head) {
+    public boolean matches(SCMHead head) {
         if (head instanceof TagSCMHead && tagIncludes != null && tagExcludes != null) {
             return doesTagMatchWithIncludeAndExcludes(head.getName());
         }

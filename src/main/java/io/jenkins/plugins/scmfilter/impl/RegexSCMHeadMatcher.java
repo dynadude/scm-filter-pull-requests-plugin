@@ -34,7 +34,7 @@ public class RegexSCMHeadMatcher extends SCMHeadMatcher {
         this.tagRegex = tagRegex;
     }
 
-    public boolean doesMatch(SCMHead head) {
+    public boolean matches(SCMHead head) {
         if (head instanceof TagSCMHead && tagRegex != null) {
             return matcher.matches(tagRegex, head.getName());
         } else {

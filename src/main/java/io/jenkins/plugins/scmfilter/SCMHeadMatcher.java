@@ -9,5 +9,5 @@ public abstract class SCMHeadMatcher {
         this.matcher = matcher;
     }
 
-    public abstract boolean doesMatch(SCMHead head);
+    public abstract boolean matches(SCMHead head);
 }

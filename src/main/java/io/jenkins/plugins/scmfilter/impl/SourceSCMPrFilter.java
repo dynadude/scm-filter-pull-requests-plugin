@@ -19,6 +19,6 @@ public class SourceSCMPrFilter implements SCMPrFilter {
 
         head = new SCMHead(((ChangeRequestSCMHead2) head).getOriginName());
 
-        return !matcher.doesMatch(head);
+        return !matcher.matches(head);
     }
 }
