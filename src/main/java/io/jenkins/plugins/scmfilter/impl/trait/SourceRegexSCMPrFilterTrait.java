@@ -28,7 +28,7 @@ public class SourceRegexSCMPrFilterTrait extends SCMPrFilterTrait {
      */
     @DataBoundConstructor
     public SourceRegexSCMPrFilterTrait(@NonNull String regex) {
-        super(new SourceSCMPrFilter(new RegexSCMHeadMatcher(regex, "")));
+        super(new SourceSCMPrFilter(new RegexSCMHeadMatcher(regex)));
 
         this.regex = regex;
     }

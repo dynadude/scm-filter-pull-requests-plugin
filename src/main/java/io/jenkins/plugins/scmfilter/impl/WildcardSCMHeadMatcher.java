@@ -13,11 +13,19 @@ public class WildcardSCMHeadMatcher extends SCMHeadMatcher {
     @NonNull
     private final String excludes;
 
-    @NonNull
     private final String tagIncludes;
 
-    @NonNull
     private final String tagExcludes;
+
+    /**
+     * Stapler constructor.
+     *
+     * @param includes the branch include rules.
+     * @param excludes the branch exclude rules.
+     */
+    public WildcardSCMHeadMatcher(@NonNull String includes, @NonNull String excludes) {
+        this(includes, excludes, null, null);
+    }
 
     /**
      * Stapler constructor.
@@ -26,14 +34,10 @@ public class WildcardSCMHeadMatcher extends SCMHeadMatcher {
      * @param excludes    the branch exclude rules.
      * @param tagIncludes the tag include rules.
      * @param tagExcludes the tag exclude rules.
-     * @param matcher     the matcher for the pull requests.
      */
     @DataBoundConstructor
     public WildcardSCMHeadMatcher(
-            @NonNull String includes,
-            @NonNull String excludes,
-            @NonNull String tagIncludes,
-            @NonNull String tagExcludes) {
+            @NonNull String includes, @NonNull String excludes, String tagIncludes, String tagExcludes) {
         super(new WildcardStringMatcher());
         this.includes = includes;
         this.excludes = excludes;
@@ -42,7 +46,7 @@ public class WildcardSCMHeadMatcher extends SCMHeadMatcher {
     }
 
     public boolean doesMatch(SCMHead head) {
-        if (head instanceof TagSCMHead) {
+        if (head instanceof TagSCMHead && tagIncludes != null && tagExcludes != null) {
             return doesTagMatchWithIncludeAndExcludes(head.getName());
         }
 
