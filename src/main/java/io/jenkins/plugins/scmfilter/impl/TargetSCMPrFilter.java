@@ -19,6 +19,6 @@ public class TargetSCMPrFilter implements SCMPrFilter {
 
         head = ((ChangeRequestSCMHead) head).getTarget();
 
-        return !matcher.doesMatch(head);
+        return !matcher.matches(head);
     }
 }
