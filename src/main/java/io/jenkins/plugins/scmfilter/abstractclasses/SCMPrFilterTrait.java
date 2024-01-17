@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package io.jenkins.plugins.scmfilter.trait;
+package io.jenkins.plugins.scmfilter.abstractclasses;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import io.jenkins.plugins.scmfilter.SCMPrFilter;
