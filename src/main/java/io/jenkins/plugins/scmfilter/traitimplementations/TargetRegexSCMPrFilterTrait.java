@@ -1,4 +1,4 @@
-package io.jenkins.plugins.scmfilter.impl.trait;
+package io.jenkins.plugins.scmfilter.traitimplementations;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
