@@ -40,7 +40,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  *
  * @since 0.1
  */
-public abstract class SCMPrFilterTrait extends SCMSourceTrait {
+public class SCMPrFilterTrait extends SCMSourceTrait {
 
     private SCMPrFilter filter;
 
