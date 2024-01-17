@@ -1,6 +1,6 @@
 package io.jenkins.plugins.scmfilter.impl;
 
-import io.jenkins.plugins.scmfilter.StringMatcher;
+import io.jenkins.plugins.scmfilter.abstractclasses.StringMatcher;
 import java.util.regex.Pattern;
 
 public class WildcardStringMatcher implements StringMatcher {

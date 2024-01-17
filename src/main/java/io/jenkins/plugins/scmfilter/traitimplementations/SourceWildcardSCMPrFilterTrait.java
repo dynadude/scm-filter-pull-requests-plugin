@@ -2,9 +2,9 @@ package io.jenkins.plugins.scmfilter.traitimplementations;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
+import io.jenkins.plugins.scmfilter.abstractclasses.SCMPrFilterTrait;
 import io.jenkins.plugins.scmfilter.impl.SourceSCMPrFilter;
 import io.jenkins.plugins.scmfilter.impl.WildcardSCMHeadMatcher;
-import io.jenkins.plugins.scmfilter.trait.SCMPrFilterTrait;
 import jenkins.scm.api.trait.SCMSourceTraitDescriptor;
 import jenkins.scm.impl.trait.Selection;
 import org.jenkinsci.Symbol;

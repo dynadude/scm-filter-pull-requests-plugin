@@ -1,7 +1,7 @@
 package io.jenkins.plugins.scmfilter.impl;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import io.jenkins.plugins.scmfilter.SCMHeadMatcher;
+import io.jenkins.plugins.scmfilter.abstractclasses.SCMHeadMatcher;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.mixin.TagSCMHead;
 import org.kohsuke.stapler.DataBoundConstructor;

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import io.jenkins.plugins.scmfilter.TestInitialization;
-import io.jenkins.plugins.scmfilter.trait.SCMPrFilterTrait;
+import io.jenkins.plugins.scmfilter.abstractclasses.SCMPrFilterTrait;
 import java.util.List;
 import jenkins.scm.api.trait.SCMHeadPrefilter;
 import jenkins.scm.api.trait.SCMSourceContext;
