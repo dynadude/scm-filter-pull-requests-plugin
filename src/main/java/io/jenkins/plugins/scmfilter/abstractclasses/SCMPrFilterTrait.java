@@ -26,7 +26,6 @@
 package io.jenkins.plugins.scmfilter.abstractclasses;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import io.jenkins.plugins.scmfilter.SCMPrFilter;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.SCMSource;
 import jenkins.scm.api.trait.SCMHeadPrefilter;
