@@ -1,4 +1,4 @@
-package io.jenkins.plugins.scmfilter.impl.trait;
+package io.jenkins.plugins.scmfilter.traitimplementations;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
