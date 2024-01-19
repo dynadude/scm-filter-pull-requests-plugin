@@ -3,7 +3,7 @@ package io.jenkins.plugins.scmfilter;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import io.jenkins.plugins.scmfilter.impl.WildcardStringMatcher;
+import io.jenkins.plugins.scmfilter.wildcardstringmatcher.WildcardStringMatcher;
 import org.junit.Test;
 
 public class WildcardStringMatcherTest {
