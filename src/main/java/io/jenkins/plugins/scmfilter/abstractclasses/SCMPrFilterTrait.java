@@ -31,7 +31,6 @@ import jenkins.scm.api.SCMSource;
 import jenkins.scm.api.trait.SCMHeadPrefilter;
 import jenkins.scm.api.trait.SCMSourceContext;
 import jenkins.scm.api.trait.SCMSourceTrait;
-import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
  * Decorates a {@link SCMSource} with a {@link SCMHeadPrefilter} that filters
@@ -40,7 +39,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  *
  * @since 0.1
  */
-public class SCMPrFilterTrait extends SCMSourceTrait {
+public abstract class SCMPrFilterTrait extends SCMSourceTrait {
 
     private SCMPrFilter filter;
 
@@ -49,7 +48,6 @@ public class SCMPrFilterTrait extends SCMSourceTrait {
      *
      * @param matcher the matcher for the pull requests.
      */
-    @DataBoundConstructor
     public SCMPrFilterTrait(SCMPrFilter filter) {
         this.filter = filter;
     }
