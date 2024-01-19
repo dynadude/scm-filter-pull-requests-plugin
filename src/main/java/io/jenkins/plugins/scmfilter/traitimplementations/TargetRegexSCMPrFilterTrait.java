@@ -5,7 +5,7 @@ import hudson.Extension;
 import hudson.util.FormValidation;
 import io.jenkins.plugins.scmfilter.abstractclasses.SCMPrFilterTrait;
 import io.jenkins.plugins.scmfilter.impl.RegexSCMHeadMatcher;
-import io.jenkins.plugins.scmfilter.impl.TargetSCMPrFilter;
+import io.jenkins.plugins.scmfilter.prfilterimplementations.TargetSCMPrFilter;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import jenkins.scm.api.trait.SCMSourceTraitDescriptor;
