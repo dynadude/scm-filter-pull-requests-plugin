@@ -1,4 +1,4 @@
-package io.jenkins.plugins.scmfilter;
+package io.jenkins.plugins.scmfilter.testingutils;
 
 import static org.mockito.Mockito.mock;
 
