@@ -1,9 +1,8 @@
-package io.jenkins.plugins.scmfilter;
+package io.jenkins.plugins.scmfilter.wildcardstringmatcher;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import io.jenkins.plugins.scmfilter.wildcardstringmatcher.WildcardStringMatcher;
 import org.junit.Test;
 
 public class WildcardStringMatcherTest {
