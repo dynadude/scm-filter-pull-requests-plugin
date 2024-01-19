@@ -1,7 +1,8 @@
-package io.jenkins.plugins.scmfilter.impl;
+package io.jenkins.plugins.scmfilter.headmatcherimplementations;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import io.jenkins.plugins.scmfilter.abstractclasses.SCMHeadMatcher;
+import io.jenkins.plugins.scmfilter.impl.RegexStringMatcher;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.mixin.TagSCMHead;
 import org.kohsuke.stapler.DataBoundConstructor;
