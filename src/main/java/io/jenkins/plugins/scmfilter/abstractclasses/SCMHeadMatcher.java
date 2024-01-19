@@ -1,4 +1,4 @@
-package io.jenkins.plugins.scmfilter;
+package io.jenkins.plugins.scmfilter.abstractclasses;
 
 import jenkins.scm.api.SCMHead;
 

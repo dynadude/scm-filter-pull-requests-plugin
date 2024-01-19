@@ -1,11 +1,11 @@
-package io.jenkins.plugins.scmfilter.impl.trait;
+package io.jenkins.plugins.scmfilter.traitimplementations;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.util.FormValidation;
-import io.jenkins.plugins.scmfilter.impl.RegexSCMHeadMatcher;
-import io.jenkins.plugins.scmfilter.impl.TargetSCMPrFilter;
-import io.jenkins.plugins.scmfilter.trait.SCMPrFilterTrait;
+import io.jenkins.plugins.scmfilter.abstractclasses.SCMPrFilterTrait;
+import io.jenkins.plugins.scmfilter.headmatcherimplementations.RegexSCMHeadMatcher;
+import io.jenkins.plugins.scmfilter.prfilterimplementations.SourceSCMPrFilter;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import jenkins.scm.api.trait.SCMSourceTraitDescriptor;
@@ -16,37 +16,28 @@ import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
-public class TargetRegexSCMPrFilterTrait extends SCMPrFilterTrait {
+public class SourceRegexSCMPrFilterTrait extends SCMPrFilterTrait {
 
     @NonNull
     private final String regex;
 
-    @NonNull
-    private final String tagRegex;
-
     /**
      * Stapler constructor.
      *
-     * @param regex    the regex for filtering PRs to branches.
-     * @param tagRegex the regex for filtering PRs to tags.
+     * @param regex the regex for filtering PRs to branches.
      */
     @DataBoundConstructor
-    public TargetRegexSCMPrFilterTrait(@NonNull String regex, @NonNull String tagRegex) {
-        super(new TargetSCMPrFilter(new RegexSCMHeadMatcher(regex, tagRegex)));
+    public SourceRegexSCMPrFilterTrait(@NonNull String regex) {
+        super(new SourceSCMPrFilter(new RegexSCMHeadMatcher(regex)));
 
         this.regex = regex;
-        this.tagRegex = tagRegex;
     }
 
     public String getRegex() {
         return regex;
     }
 
-    public String getTagRegex() {
-        return tagRegex;
-    }
-
-    @Symbol("targetRegexSCMPrFilterTrait")
+    @Symbol("sourceRegexSCMPrFilterTrait")
     @Extension
     @Selection
     public static class DescriptorImpl extends SCMSourceTraitDescriptor {
@@ -56,7 +47,7 @@ public class TargetRegexSCMPrFilterTrait extends SCMPrFilterTrait {
          */
         @Override
         public String getDisplayName() {
-            return Messages.TargetRegexSCMPrFilterTrait_DisplayName();
+            return Messages.SourceRegexSCMPrFilterTrait_DisplayName();
         }
 
         /**

@@ -1,43 +1,33 @@
-package io.jenkins.plugins.scmfilter.impl.trait;
+package io.jenkins.plugins.scmfilter.traitimplementations;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import io.jenkins.plugins.scmfilter.TestInitialization;
-import io.jenkins.plugins.scmfilter.trait.SCMPrFilterTrait;
+import io.jenkins.plugins.scmfilter.abstractclasses.SCMPrFilterTrait;
 import java.util.List;
 import jenkins.scm.api.trait.SCMHeadPrefilter;
 import jenkins.scm.api.trait.SCMSourceContext;
 import jenkins.scm.impl.mock.MockSCMHead;
 import org.junit.Test;
 
-public class TargetWildcardSCMPrFilterTraitTest {
+public class SourceWildcardSCMPrFilterTraitTest {
     @Test
     public void testFilterToMaster() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new TargetWildcardSCMPrFilterTrait("master", "", "", "*");
+        SCMPrFilterTrait filterTrait = new SourceWildcardSCMPrFilterTrait("master", "");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
             assertFalse(
-                    "Is the PR to master let through?",
+                    "Is the PR from master let through?",
                     prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToMasterHead));
+                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrFromMasterHead));
 
             assertTrue(
-                    "Is the PR to develop filtered out?",
+                    "Is the PR from develop filtered out?",
                     prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToDevelopHead));
-
-            assertTrue(
-                    "Is the PR to the name tag filtered out?",
-                    prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToNameTagHead));
-
-            assertTrue(
-                    "Is the PR to the police tag filtered out?",
-                    prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToPoliceTagHead));
+                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrFromDevelopHead));
 
             assertFalse(
                     "Is master let through?",
@@ -52,29 +42,19 @@ public class TargetWildcardSCMPrFilterTraitTest {
 
     public void testBranchExcludes() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new TargetWildcardSCMPrFilterTrait("*", "mas*", "", "*");
+        SCMPrFilterTrait filterTrait = new SourceWildcardSCMPrFilterTrait("*", "mas*");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         for (SCMHeadPrefilter prefilter : prefilters) {
             assertTrue(
-                    "Is the PR to master filtered out?",
+                    "Is the PR from master filtered out?",
                     prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToMasterHead));
+                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrFromMasterHead));
 
             assertTrue(
-                    "Is the PR to develop let through?",
+                    "Is the PR from develop let through?",
                     !prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToDevelopHead));
-
-            assertTrue(
-                    "Is the PR to the name tag filtered out?",
-                    prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToNameTagHead));
-
-            assertTrue(
-                    "Is the PR to the police tag filtered out?",
-                    prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToPoliceTagHead));
+                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrFromDevelopHead));
 
             assertTrue(
                     "Is master let through?",
@@ -90,30 +70,20 @@ public class TargetWildcardSCMPrFilterTraitTest {
     @Test
     public void testFilterToNameTag() throws Exception {
         SCMSourceContext context = TestInitialization.initializeMockSCMSourceContext();
-        SCMPrFilterTrait filterTrait = new TargetWildcardSCMPrFilterTrait("", "", "name", "");
+        SCMPrFilterTrait filterTrait = new SourceWildcardSCMPrFilterTrait("", "");
         filterTrait.decorateContext(context);
         List<SCMHeadPrefilter> prefilters = context.prefilters();
         assertTrue("prefilters only have one item", prefilters.size() == 1);
         for (SCMHeadPrefilter prefilter : prefilters) {
             assertTrue(
-                    "Is the PR to master filtered out?",
+                    "Is the PR from master filtered out?",
                     prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToMasterHead));
+                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrFromMasterHead));
 
             assertTrue(
-                    "Is the PR to develop filtered out?",
+                    "Is the PR from develop filtered out?",
                     prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToDevelopHead));
-
-            assertTrue(
-                    "Is the PR to the name tag let through?",
-                    !prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToNameTagHead));
-
-            assertTrue(
-                    "Is the PR to the police tag filtered out?",
-                    prefilter.isExcluded(
-                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrToPoliceTagHead));
+                            TestInitialization.initializeMockSCMSource(), TestInitialization.mockPrFromDevelopHead));
 
             assertTrue(
                     "Is master let through?",

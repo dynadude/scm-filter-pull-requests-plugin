@@ -1,7 +1,7 @@
-package io.jenkins.plugins.scmfilter.impl;
+package io.jenkins.plugins.scmfilter.prfilterimplementations;
 
-import io.jenkins.plugins.scmfilter.SCMHeadMatcher;
-import io.jenkins.plugins.scmfilter.SCMPrFilter;
+import io.jenkins.plugins.scmfilter.abstractclasses.SCMHeadMatcher;
+import io.jenkins.plugins.scmfilter.abstractclasses.SCMPrFilter;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.mixin.ChangeRequestSCMHead;
 
