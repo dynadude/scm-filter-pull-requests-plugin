@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import io.jenkins.plugins.scmfilter.abstractclasses.StringMatcher;
-import io.jenkins.plugins.scmfilter.impl.RegexStringMatcher;
+import io.jenkins.plugins.scmfilter.regexstringmatcher.RegexStringMatcher;
 import java.util.regex.PatternSyntaxException;
 import org.junit.Test;
 

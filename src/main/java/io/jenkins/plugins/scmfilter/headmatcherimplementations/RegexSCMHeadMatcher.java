@@ -2,7 +2,7 @@ package io.jenkins.plugins.scmfilter.headmatcherimplementations;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import io.jenkins.plugins.scmfilter.abstractclasses.SCMHeadMatcher;
-import io.jenkins.plugins.scmfilter.impl.RegexStringMatcher;
+import io.jenkins.plugins.scmfilter.regexstringmatcher.RegexStringMatcher;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.mixin.TagSCMHead;
 import org.kohsuke.stapler.DataBoundConstructor;

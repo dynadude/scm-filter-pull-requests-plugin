@@ -1,4 +1,4 @@
-package io.jenkins.plugins.scmfilter.impl;
+package io.jenkins.plugins.scmfilter.regexstringmatcher;
 
 import io.jenkins.plugins.scmfilter.abstractclasses.StringMatcher;
 import java.util.regex.Pattern;
