@@ -1,24 +1,19 @@
 package io.jenkins.plugins.scmfilter.prfilterimplementations;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.jenkins.plugins.scmfilter.abstractclasses.SCMHeadMatcher;
-import io.jenkins.plugins.scmfilter.abstractclasses.SCMPrFilter;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.mixin.ChangeRequestSCMHead;
 
-public class TargetSCMPrFilter implements SCMPrFilter {
-    private SCMHeadMatcher matcher;
-
+public class TargetSCMPrFilter extends AbstractSCMPrFilter {
     public TargetSCMPrFilter(SCMHeadMatcher matcher) {
-        this.matcher = matcher;
+        super(matcher);
     }
 
-    public boolean isExcluded(SCMHead head) {
-        if (!(head instanceof ChangeRequestSCMHead)) {
-            return false;
-        }
-
-        head = ((ChangeRequestSCMHead) head).getTarget();
-
-        return !matcher.matches(head);
+    @Override
+    @SuppressFBWarnings
+    // Cast is checked in the base class
+    protected SCMHead getHeadToMatch(SCMHead head) {
+        return ((ChangeRequestSCMHead) head).getTarget();
     }
 }
