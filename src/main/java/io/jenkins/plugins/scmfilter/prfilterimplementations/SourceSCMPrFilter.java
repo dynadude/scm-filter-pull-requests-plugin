@@ -11,6 +11,15 @@ public class SourceSCMPrFilter extends AbstractSCMPrFilter {
     }
 
     @Override
+    public boolean isExcluded(SCMHead head) {
+        if (!(head instanceof ChangeRequestSCMHead2)) {
+            return false;
+        }
+
+        return super.isExcluded(head);
+    }
+
+    @Override
     @SuppressFBWarnings
     // Cast is checked in the base class
     protected SCMHead getHeadToMatch(SCMHead head) {
