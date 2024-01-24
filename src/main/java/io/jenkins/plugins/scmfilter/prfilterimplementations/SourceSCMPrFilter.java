@@ -5,7 +5,7 @@ import io.jenkins.plugins.scmfilter.abstractclasses.SCMHeadMatcher;
 import jenkins.scm.api.SCMHead;
 import jenkins.scm.api.mixin.ChangeRequestSCMHead2;
 
-public class SourceSCMPrFilter extends AbstractSCMPrFilter {
+public class SourceSCMPrFilter extends SCMPrFilterTemplate {
     public SourceSCMPrFilter(SCMHeadMatcher matcher) {
         super(matcher);
     }
